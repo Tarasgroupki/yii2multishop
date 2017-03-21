@@ -1,0 +1,26 @@
+{
+    "name": "pjhl/yii2-multilanguage",
+    "description": "Multi Language support for Yii2 Framework.",
+    "keywords": ["yii2", "multi", "language", "lang", "translate", "мультиязычность","i18n","translate","lingual","перевод","локализация"],
+    "homepage": "https://github.com/pjhl/yii2-multilanguage",
+    "type": "yii2-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pjhl",
+            "email": "pjhl.coder@gmail.com",
+            "homepage": "https://github.com/pjhl/yii2-multilanguage"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "scripts": {
+        "test": "cd advanced/tests && codecept run"
+    },
+    "autoload": {
+        "psr-4": {
+            "pjhl\\multilanguage\\": ""
+        }
+    }
+}

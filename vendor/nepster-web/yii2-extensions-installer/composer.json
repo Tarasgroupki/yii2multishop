@@ -1,0 +1,25 @@
+{
+    "name": "nepster-web/yii2-extensions-installer",
+    "description": "Установщик yii2 расширений",
+    "type": "yii2-extension",
+    "keywords": ["yii2", "yii 2", "extensions install", "extension install"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Nepster",
+            "email": "nepsterxxx@mail.ru"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/nepster-web/yii2-extensions-installer/issues",
+        "source": "https://github.com/nepster-web/yii2-modules-installer"
+    },
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "nepster\\modules\\installer\\": ""
+        }
+    }
+}
