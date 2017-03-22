@@ -69,11 +69,12 @@ class Product extends \yii\db\ActiveRecord implements CartPositionInterface
     public function rules()
     {
         return [
-		    [['news_translate'],'safe'],
+		    [['news_translate'],'validatorRequiredWords'],
             [['description'], 'string'],
             [['category_id'], 'integer'],
             [['price'], 'number'],
-            [['title'], 'string', 'max' => 255]
+            [['title'], 'string', 'max' => 255],
+			[['category_id','price'],'required']
         ];
     }
 
@@ -92,6 +93,14 @@ class Product extends \yii\db\ActiveRecord implements CartPositionInterface
         ];
     }
 
+    public function validatorRequiredWords()
+{ 
+    foreach ( $this->news_translate as $news ) {
+        if(empty($news['title']) && empty($news['description'])) {
+			$this->addError('news_translate', 'Не заповнені всі поля!');     
+        }
+    }
+}
 	public function getProduct()
 	{
 		return $this->hasMany(Product::className(), ['lang_id' => 'id']);
