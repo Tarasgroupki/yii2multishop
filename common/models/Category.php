@@ -3,7 +3,7 @@
 namespace common\models;
 
 use Yii;
-use yii\behaviors\SluggableBehavior;
+use yii\behaviors\CategorySluggableBehavior;
 
 /**
  * This is the model class for table "category".
@@ -23,7 +23,7 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             [
-                'class' => SluggableBehavior::className(),
+                'class' => CategorySluggableBehavior::className(),
                 'attribute' => 'title',
                 'slugAttribute' => 'slug'
             ],
