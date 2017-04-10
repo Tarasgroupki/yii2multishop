@@ -12,13 +12,10 @@ use yii\helpers\Url;
         if (isset($images[0])) {
             echo Html::img($images[0]->getUrl(), ['width' => '100%']);
         }
-		//print_r($model);
         ?>
     </div>
     <div class="col-xs-6"> 
-	<?$url = Url::toRoute(['view','id' => $model->product_id, 'name' => $model->slug])?>
-        <a href="<?=$url;?>"><h2><?= Html::encode($model->title) ?></h2></a>  
-		<?//= Html::a('<h2>'.Html::encode($model->title).'</h2>', ['view','name'=>$model->slug], ['class' => 'btn btn-primary']) ?>
+        <a href="<?=Url::toRoute(['view','id' => $model->product_id, 'name' => $model->slug]);?>"><h2><?= Html::encode($model->title) ?></h2></a>  
 		<?= Markdown::process($model->description) ?>
     </div>
 

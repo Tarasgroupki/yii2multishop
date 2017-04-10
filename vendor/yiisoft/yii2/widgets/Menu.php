@@ -172,7 +172,9 @@ class Menu extends Widget
     public function run()
     {
         if ($this->route === null && Yii::$app->controller !== null) {
-            $this->route = Yii::$app->controller->getRoute().'/'.$items[0]['label'];
+            //$items[0]['label'] = ' ';
+			//echo $items[0]['label'];die;
+			$this->route = Yii::$app->controller->getRoute().'/'.$items[0]['label'];
         }
 		//echo $this->route;
         if ($this->params === null) {

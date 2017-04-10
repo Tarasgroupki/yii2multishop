@@ -144,7 +144,7 @@ class SluggableBehavior extends AttributeBehavior
                 foreach ((array) $this->attribute as $attribute) {
 					$slugParts[] = ArrayHelper::getValue($this->owner, $attribute);
                 }
-				//print_r($slugParts);
+				print_r($slugParts);
 				$slugParts[0] = $slugParts[0][1]['title'];
                 $slug = $this->generateSlug($slugParts);
 				//echo $slug;die;

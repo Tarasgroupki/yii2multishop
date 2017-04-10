@@ -5,12 +5,12 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use frontend\widgets\Alert;
-//use yii\i18n\PhpMessageSource;
+use yii\i18n\PhpMessageSource;
 use pjhl\multilanguage\assets\ChangeLanguageAsset;
 ChangeLanguageAsset::register($this);
 /* @var $this \yii\web\View */
 /* @var $content string */
-\Yii::t('app', 'About');
+Yii::t('app', 'About');
 
 AppAsset::register($this);
 ?>
@@ -34,35 +34,31 @@ AppAsset::register($this);
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
-            ]);?>
-			
-			<?
+            ]);
             $itemsInCart = Yii::$app->cart->getCount();
             $menuItems = [
-                ['label' => \Yii::t('app', 'About'), 'url' => ['/site/about']],
-                ['label' => \Yii::t('app', 'Contact'), 'url' => ['/site/contact']],
-                ['label' => \Yii::t('app', 'My cart') . ($itemsInCart ? " ($itemsInCart)" : ''), 'url' => ['/cart/list']],
+                ['label' => Yii::t('app', 'About'), 'url' => ['/site/about']],
+                ['label' => Yii::t('app', 'Contact'), 'url' => ['/site/contact']],
+                ['label' => Yii::t('app', 'My cart') . ($itemsInCart ? " ($itemsInCart)" : ''), 'url' => ['/cart/list']],
             ];
             if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => \Yii::t('app', 'Signup'), 'url' => ['/site/signup']];
-                $menuItems[] = ['label' => \Yii::t('app', 'Login'), 'url' => ['/site/login']];
+                $menuItems[] = ['label' => Yii::t('app', 'Signup'), 'url' => ['/site/signup']];
+                $menuItems[] = ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']];
             } else {
                 $menuItems[] = [
-                    'label' => \Yii::t('app', 'Logout').' (' . Yii::$app->user->identity->username . ')',
+                    'label' => Yii::t('app', 'Logout').' (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/site/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ];
-            }?>
-			
-			<?
+            }
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => $menuItems,
-            ]);?>
-			<div class="dropdown">
+            ]);
+			echo '<div class="dropdown">
   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
         data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    <?=\Yii::t('app', 'English')?>
+    '.Yii::t("app", "English").'
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -70,9 +66,10 @@ AppAsset::register($this);
     <li><a href="#" class="multilanguage-set" data-language="2">Русский</a></li>
     <li><a href="#" class="multilanguage-set" data-language="3">Українська</a></li>
  </ul>
-</div>
-			<?
+</div>';
             NavBar::end();?>
+			
+			
 			
 
         <div class="container">

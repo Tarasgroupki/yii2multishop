@@ -93,7 +93,7 @@ class Product extends \yii\db\ActiveRecord implements CartPositionInterface
         ];
     }
 
-    public function validatorRequiredWords()
+	    public function validatorRequiredWords()
 { 
     foreach ( $this->news_translate as $news ) {
         if(empty($news['title']) && empty($news['description'])) {

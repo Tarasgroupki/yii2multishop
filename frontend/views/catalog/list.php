@@ -21,8 +21,6 @@ $this->title = Html::encode($title);
               ],
           ]) ?>
       </div>
-	  <?//LangHelper::getLanguage('id');?>
-	  <?//print_r(Yii::$app->params)?>
       <div class="col-xs-8">
           <?= ListView::widget([
               'dataProvider' => $productsDataProvider,

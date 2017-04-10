@@ -140,12 +140,15 @@ class Nav extends Widget
     public function renderItems()
     {
         $items = [];
+		if(is_array($items) || is_object($items)){
+			print_r($this->items);die;
         foreach ($this->items as $i => $item) {
             if (isset($item['visible']) && !$item['visible']) {
                 continue;
             }
             $items[] = $this->renderItem($item);
         }
+		}
 
         return Html::tag('ul', implode("\n", $items), $this->options);
     }
