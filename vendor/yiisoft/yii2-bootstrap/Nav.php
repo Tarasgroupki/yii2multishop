@@ -141,7 +141,6 @@ class Nav extends Widget
     {
         $items = [];
 		if(is_array($items) || is_object($items)){
-			print_r($this->items);die;
         foreach ($this->items as $i => $item) {
             if (isset($item['visible']) && !$item['visible']) {
                 continue;
