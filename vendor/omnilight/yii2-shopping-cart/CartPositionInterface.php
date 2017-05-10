@@ -35,7 +35,7 @@ interface CartPositionInterface
     /**
      * @param int $quantity
      */
-    public function setQuantity($quantity);
+    public function setQuantity($quantity,$add);
 
     /**
      * @return int

@@ -40,7 +40,6 @@ class CatalogController extends \yii\web\Controller
                 'pageSize' => 10,
             ],
         ]);
-//echo '<pre>'.print_r($productsDataProvider,true).'</pre>';
         return $this->render('list', [
             'category' => $category,
             'menuItems' => $this->getMenuItems($categories, isset($category->id) ? $category->id : null),
@@ -48,12 +47,12 @@ class CatalogController extends \yii\web\Controller
         ]);
     }
 
-    public function actionView()
+    public function actionView($quantity = 1,$id)
     {
 		//echo LangHelper::getLanguage('id');
-		$name = Yii::$app->request->get('id');
-		$items = Product::find()->where(['product_id'=>$name])->andwhere(['lang_id'=>LangHelper::getLanguage('id')])->one();
-        return $this->render('view',compact('items'));
+		//$name = Yii::$app->request->get('id');
+		$items = Product::find()->where(['product_id'=>$id])->andwhere(['lang_id'=>LangHelper::getLanguage('id')])->one();
+        return $this->render('view',compact('items','quantity'));
     }
 
     /**

@@ -20,9 +20,9 @@ trait CartPositionTrait
         return $this->_quantity;
     }
 
-    public function setQuantity($quantity)
+    public function setQuantity($quantity,$add)
     {
-        $this->_quantity = $quantity;
+        $this->_quantity = $quantity + $add;
     }
 
     /**

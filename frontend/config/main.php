@@ -28,6 +28,9 @@ return [
         'successUrl' => ['/merchant/perfect-money/success'],
         'failureUrl' => ['/merchant/perfect-money/failure'],
     ],
+	'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+        ],
 	'request' => [
             'baseUrl' => '',
 			 'class' => 'pjhl\multilanguage\components\AdvancedRequest',

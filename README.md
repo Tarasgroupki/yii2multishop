@@ -92,4 +92,3 @@ Then, you can login into the application with same email address and password at
 "# yii2multishop" 
 "# yii2multishop" 
 "# yii2multishop" 
-"# yii2multishop" 

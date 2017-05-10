@@ -1,5 +1,6 @@
 <?php
 use backend\assets\AppAsset;
+//use Yii;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -47,6 +48,11 @@ AppAsset::register($this);
                     'linkOptions' => ['data-method' => 'post']
                 ];
             }
+			else {
+				echo 'Немає доступу!';
+				die;
+				Yii::$app->getResponse()->redirect('/');
+			}
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => $menuItems,

@@ -92,13 +92,13 @@ class ShoppingCart extends Component
      * @param CartPositionInterface $position
      * @param int $quantity
      */
-    public function put($position, $quantity = 1)
+    public function put($position,$add, $quantity = 1)
     {
         if (isset($this->_positions[$position->getId()])) {
             $this->_positions[$position->getId()]->setQuantity(
-                $this->_positions[$position->getId()]->getQuantity() + $quantity);
+                $this->_positions[$position->getId()]->getQuantity() + $quantity,$add);
         } else {
-            $position->setQuantity($quantity);
+            $position->setQuantity($quantity,$add);
             $this->_positions[$position->getId()] = $position;
         }
         $this->trigger(self::EVENT_POSITION_PUT, new CartActionEvent([
@@ -134,7 +134,7 @@ class ShoppingCart extends Component
         }
 
         if (isset($this->_positions[$position->getId()])) {
-            $this->_positions[$position->getId()]->setQuantity($quantity);
+            $this->_positions[$position->getId()]->setQuantity($quantity,$add=null);
         } else {
             $position->setQuantity($quantity);
             $this->_positions[$position->getId()] = $position;

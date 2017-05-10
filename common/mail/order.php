@@ -21,6 +21,7 @@ use yii\helpers\Html;
 <ul>
 <?php
 $sum = 0;
+//print_r($order->orderItems);die;
 foreach ($order->orderItems as $item): ?>
     <?php $sum += $item->quantity * $item->price ?>
     <li><?= Html::encode($item->title . ' x ' . $item->quantity . ' x ' . $item->price . '$') ?></li>
