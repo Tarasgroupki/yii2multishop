@@ -27,6 +27,7 @@ class m141123_221351_shop extends Migration
             'title' => Schema::TYPE_STRING,
             'slug' => Schema::TYPE_STRING,
             'description' => Schema::TYPE_TEXT,
+			'lang_id' => Schema::TYPE_INTEGER,
 			'product_id' => Schema::TYPE_INTEGER,
             'category_id' => Schema::TYPE_INTEGER,
             'price' => Schema::TYPE_MONEY,
