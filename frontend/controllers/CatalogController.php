@@ -8,6 +8,7 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Url;
 use pjhl\multilanguage\LangHelper;
+use onmotion\gallery\models\GalleryPhoto;
 //use yii\i18n\PhpMessageSource;
 
 class CatalogController extends \yii\web\Controller
@@ -51,8 +52,10 @@ class CatalogController extends \yii\web\Controller
     {
 		//echo LangHelper::getLanguage('id');
 		//$name = Yii::$app->request->get('id');
-		$items = Product::find()->where(['product_id'=>$id])->andwhere(['lang_id'=>LangHelper::getLanguage('id')])->one();
-        return $this->render('view',compact('items','quantity'));
+		$items = (new Product)->getViewProducts($id);
+        $photos = (new GalleryPhoto)->getAllPhotos($id);
+		//print_r($items);die;
+		return $this->render('view',compact('items','quantity','photos'));
     }
 
     /**
@@ -65,7 +68,7 @@ class CatalogController extends \yii\web\Controller
     {
         $menuItems = [];
         foreach ($categories as $category) {
-            if ($category->parent_id === $parent) {
+			if ($category->parent_id === $parent) {
                 $menuItems[$category->id] = [
                     'active' => $activeId === $category->id,
                     'label' => $category->title,

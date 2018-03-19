@@ -2,8 +2,13 @@
 use yii\helpers\Html;
 /* @var $this yii\web\View */
 ?>
-<?//print_r($items);?>
-<?//foreach($items as $item):?>
+<?php //print_r($items);?>
+<?php //foreach($items as $item):?>
+<?=Html::img($items['image_url']);?>
+<?php echo '<br />';?>
+<?php foreach($photos as $photo):?>
+<?=Html::img('/img/gallery/'.$photo['gallery_name'].'/Thumb/'.$photo['name']);?>
+<?php endforeach;?>
 <h1><?=$items['title'];?></h1>
 <h4><?=$items['description'];?></h4>
 <div class="col-xs-2">

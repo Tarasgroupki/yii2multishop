@@ -168,11 +168,11 @@ class ShoppingCart extends Component
     {
         $this->trigger(self::EVENT_BEFORE_POSITION_REMOVE, new CartActionEvent([
             'action' => CartActionEvent::ACTION_BEFORE_REMOVE,
-            'position' => $this->_positions[$id],
+            //'position' => $this->_positions[$id],
         ]));
         $this->trigger(self::EVENT_CART_CHANGE, new CartActionEvent([
             'action' => CartActionEvent::ACTION_BEFORE_REMOVE,
-            'position' => $this->_positions[$id],
+            //'position' => $this->_positions[$id],
         ]));
         unset($this->_positions[$id]);
         if ($this->storeInSession)

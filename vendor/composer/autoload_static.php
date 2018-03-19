@@ -28,6 +28,11 @@ class ComposerStaticInit429f85f63cc09bfb736d3efa1417e3fd
         array (
             'pjhl\\multilanguage\\' => 19,
         ),
+        'o' => 
+        array (
+            'onmotion\\helpers\\' => 17,
+            'onmotion\\gallery\\' => 17,
+        ),
         'n' => 
         array (
             'nepster\\perfectmoney\\' => 21,
@@ -87,6 +92,14 @@ class ComposerStaticInit429f85f63cc09bfb736d3efa1417e3fd
         'pjhl\\multilanguage\\' => 
         array (
             0 => __DIR__ . '/..' . '/pjhl/yii2-multilanguage',
+        ),
+        'onmotion\\helpers\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/onmotion/yii2-helpers',
+        ),
+        'onmotion\\gallery\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/onmotion/yii2-gallery',
         ),
         'nepster\\perfectmoney\\' => 
         array (

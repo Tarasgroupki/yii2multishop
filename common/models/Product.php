@@ -9,6 +9,7 @@ use yii\behaviors\SluggableBehavior2;
 use yii\behaviors\SluggableBehavior3;
 use yz\shoppingcart\CartPositionInterface;
 use yz\shoppingcart\CartPositionTrait;
+use pjhl\multilanguage\LangHelper;
 
 /**
  * This is the model class for table "product".
@@ -28,6 +29,9 @@ class Product extends \yii\db\ActiveRecord implements CartPositionInterface
 {
     use CartPositionTrait;
     public $news_translate = array();
+	public $image_url;
+	public $file;
+	public $file_name;
 	public $slug1;
 	public $slug2;
 	public $slug3;
@@ -74,7 +78,8 @@ class Product extends \yii\db\ActiveRecord implements CartPositionInterface
             [['category_id'], 'integer'],
             [['price'], 'number'],
             [['title'], 'string', 'max' => 255],
-			[['category_id','price'],'required']
+			[['category_id','price'],'required'],
+			[['file'],'file','skipOnEmpty' => true,'extensions' => 'png, jpg, jpeg']
         ];
     }
 
@@ -93,7 +98,7 @@ class Product extends \yii\db\ActiveRecord implements CartPositionInterface
         ];
     }
 
-	    public function validatorRequiredWords()
+	public function validatorRequiredWords()
 { 
     foreach ( $this->news_translate as $news ) {
         if(empty($news['title']) && empty($news['description'])) {
@@ -223,5 +228,29 @@ class Product extends \yii\db\ActiveRecord implements CartPositionInterface
 		$connection->createCommand()
 		->delete('product','product_id = '.$id.'')
 		->execute();
+	}
+	public function Max_news()
+	{
+		$connection = Yii::$app->db;
+		$file_id = $connection->createCommand('SELECT MAX(product_id) FROM `product` GROUP BY `lang_id`')->queryAll();	
+	    return $file_id;
+	}
+	 public function uploadImage($filename)
+	{
+		$connection = Yii::$app->db;
+			if ($this->file) {  						
+				$file_id = $this->Max_news();
+				/*$connection->createCommand()->batchInsert('g_photo',['gallery_id','name'],[
+		    [$file_id[0]['MAX(product_id)'] + 1,$filename],
+		])->execute();*/
+		$connection->createCommand()->batchInsert('image',['prod_id','image_url'],[
+		    [$file_id[0]['MAX(product_id)'],$filename],
+		])->execute();
+		}
+	}
+	public function getViewProducts($id)
+	{
+		return static::find() ->select('*,product.product_id,product.id')           
+		    ->LeftJoin('image', 'product.product_id = image.prod_id')->where(['product.product_id'=>$id])->andwhere(['product.lang_id'=>LangHelper::getLanguage('id')])->one();;
 	}
 }

@@ -23,7 +23,8 @@
         "omnilight/yii2-shopping-cart": "~1.0",
         "pjhl/yii2-multilanguage": "~0.2",
         "2amigos/yii2-transliterator-helper": "^0.1.0",
-        "nepster-web/yii2-extensions-installer": "*"
+        "nepster-web/yii2-extensions-installer": "*",
+        "onmotion/yii2-gallery": "*"
 	},
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

@@ -54,7 +54,7 @@ AppAsset::register($this);
 				Yii::$app->getResponse()->redirect('/');
 			}
             echo Nav::widget([
-                'options' => ['class' => 'navbar-nav navbar-right'],
+                'options' => ['class' => 'navbar-nav navbar-right nav'],
                 'items' => $menuItems,
             ]);
 		NavBar::end();

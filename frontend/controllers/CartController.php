@@ -68,9 +68,9 @@ class CartController extends \yii\web\Controller
         }
     }
 	 public function actionUpdate1($id, $quantity)
-	{//echo $id;die;
+	{
 		$product = Product::find()->where(['product_id'=>$id])->all();
-    	if ($product) {
+		if ($product) {
 //Використай id для формування массиву сесій;
 			$session = Yii::$app->session;
 			$session['quantity_'.$id.''] = $quantity;

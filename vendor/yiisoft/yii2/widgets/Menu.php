@@ -174,8 +174,9 @@ class Menu extends Widget
         if ($this->route === null && Yii::$app->controller !== null) {
             //$items[0]['label'] = ' ';
 			//echo $items[0]['label'];die;
+			if(isset($items)){
 			$this->route = Yii::$app->controller->getRoute().'/'.$items[0]['label'];
-        }
+        }}
 		//echo $this->route;
         if ($this->params === null) {
             $this->params = Yii::$app->request->getQueryParams();

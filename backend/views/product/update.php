@@ -12,9 +12,9 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="product-update">
 <?= Alert::widget() ?>
-    <h1><?= Html::encode($this->title) ?></h1>
-<?//print_r($model);?>
-    <?= $this->render('_form', [
+    <h1><?php echo Html::encode($this->title) ?></h1>
+<?php //print_r($model);?>
+    <?php echo $this->render('_form', [
 	    'langs' => $langs,
 	    'all_news' => $all_news,
         'model' => $model,

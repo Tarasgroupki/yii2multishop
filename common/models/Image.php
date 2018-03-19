@@ -66,9 +66,9 @@ class Image extends \yii\db\ActiveRecord
     public function getUrl()
     {
 		//echo Yii::getAlias('http://www.shop1.ua/images/' . $this->getHash() . '.jpg');
-        return Yii::getAlias('http://www.shop1.ua/frontend/web/images/' . $this->getHash() . '.jpg');
-    }
-
+        //return Yii::getAlias('http://www.shop1.ua/frontend/web/images/' . $this->getHash() . '.jpg');
+        return $this->image_url;
+	}
     public function afterDelete()
     {
         unlink($this->getPath());

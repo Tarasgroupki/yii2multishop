@@ -14,13 +14,14 @@ $this->title = Html::encode($title);
 <div class="container-fluid">
   <div class="row">
       <div class="col-xs-4">
-          <?= Menu::widget([
+          <?php echo Menu::widget([
               'items' => $menuItems,
               'options' => [
                   'class' => 'menu',
               ],
           ]) ?>
       </div>
+	  <?php //echo '<pre>'.print_r($productsDataProvider,true).'</pre>';?>
       <div class="col-xs-8">
           <?= ListView::widget([
               'dataProvider' => $productsDataProvider,

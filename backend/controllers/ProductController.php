@@ -9,6 +9,9 @@ use backend\models\ProductSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
+use onmotion\gallery\models\Gallery;
+use onmotion\gallery\models\GalleryPhoto;
 
 /**
  * ProductController implements the CRUD actions for Product model.
@@ -66,16 +69,43 @@ class ProductController extends Controller
         $categories = Category::find()->all();
         $model = new Product();
 		$connection = Yii::$app->db;
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-			//echo '<pre>'.print_r($model,true).'</pre>';
+        if ($model->load(Yii::$app->request->post()) ) {
 			$max = $connection->createCommand('SELECT MAX(product_id) FROM `product`')->queryOne();
-			//echo $model->slug;
+            $max = $max['MAX(product_id)'] + 1;	
+		   /*Gallery making*/
+		    $gallery_name = 'Gallery'.$max.'';
+			$gallery = array(0=>array('gallery_id'=>'','newsapp_id'=>$max,'gallery_name'=> $gallery_name,'descr'=>'','date'=>date('Y-m-d H:i:s')));
+			$connection->createCommand()->batchInsert('g_gallery',['gallery_id','newsapp_id','gallery_name','descr','date']
+			,$gallery)->execute();
+			$alias = Yii::getAlias('@frontend/web/img/gallery/' .  $gallery_name);
+                    try {
+                        //если создавать рекурсивно, то работает через раз хз почему.
+                        $old = umask(0);
+                        mkdir($alias, 0777, true);
+                        chmod($alias, 0777);
+                        mkdir($alias . '/thumb', 0777);
+                        chmod($alias . '/thumb', 0777);
+                        umask($old);
+                    } catch (\Exception $e){
+                        return('Не удалось создать директорию ' . $alias . ' - ' . $e->getMessage());
+                    }
+			/*End of Gallery making*/
+			$model->file = UploadedFile::getInstance($model, 'file');
+			//echo '<pre>'.print_r($model,true).'</pre>';
+			if($model->validate()){
+			$max = $connection->createCommand('SELECT MAX(product_id) FROM `product`')->queryOne();
+			//print_r($max);die;
 			$model->insertNews($max,$model->price,$model->category_id,$model->slug);
-            //print_r($max);
-			//echo $max['MAX(product_id)'];
-			//die;
+			$model->file_name = '/img/gallery/'.$gallery_name.'/' . $model->file->baseName . '.' . $model->file->extension;			
+            Yii::setAlias('upload', dirname(dirname(__DIR__)) . '/frontend/web/img/gallery/'.$gallery_name.'/');
+			$model->file->saveAs(Yii::getAlias('@upload').'/'. $model->file->baseName . '.' . $model->file->extension);
+		    $model->uploadImage($model->file_name); 
+			$gallery = new GalleryPhoto();
+			$img = $model->file->baseName . '.' . $model->file->extension;
+			$gallery->insertPhoto($img,$max['MAX(product_id)']);
+			$gallery->makeImgThumb(Yii::getAlias('@upload').'/'.$img,Yii::getAlias('@upload').'/thumb/'. $img,$model->file->extension);
 			return $this->redirect(['view', 'id' => $max['MAX(product_id)']+1]);
-        } else {
+        }} else {
             return $this->render('create', [
 			    'langs' => $langs,
                 'model' => $model,

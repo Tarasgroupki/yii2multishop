@@ -39,8 +39,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{view} {update} {images} {delete}',
                 'buttons' => [
                     'images' => function ($url, $model, $key) {
-                         return Html::a('<span class="glyphicon glyphicon glyphicon-picture" aria-label="Image"></span>', Url::to(['image/index', 'id' => $model->id,'product_id' => $model->product_id]));
-                    }
+                         //return Html::a('<span class="glyphicon glyphicon glyphicon-picture" aria-label="Image"></span>', Url::to(['image/index', 'id' => $model->id,'product_id' => $model->product_id]));
+                         return Html::a('<span class="glyphicon glyphicon glyphicon-picture" aria-label="Image"></span>', Url::to(['/gallery', 'id' => $model->product_id]));
+					}
                 ],
             ],
         ],

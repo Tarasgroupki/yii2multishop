@@ -11,7 +11,7 @@ use yii\helpers\Url;
         $images = $model->images;
         if (isset($images[0])) {
             echo Html::img($images[0]->getUrl(), ['width' => '100%']);
-        }
+        }//print_r($images);die;
         ?>
     </div>
     <div class="col-xs-6"> 

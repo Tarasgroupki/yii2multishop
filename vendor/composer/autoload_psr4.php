@@ -16,6 +16,8 @@ return array(
     'yii\\bootstrap\\' => array($vendorDir . '/yiisoft/yii2-bootstrap'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
     'pjhl\\multilanguage\\' => array($vendorDir . '/pjhl/yii2-multilanguage'),
+    'onmotion\\helpers\\' => array($vendorDir . '/onmotion/yii2-helpers'),
+    'onmotion\\gallery\\' => array($vendorDir . '/onmotion/yii2-gallery'),
     'nepster\\perfectmoney\\' => array($baseDir . '/'),
     'nepster\\modules\\installer\\' => array($vendorDir . '/nepster-web/yii2-extensions-installer'),
     'dosamigos\\transliterator\\' => array($vendorDir . '/2amigos/yii2-transliterator-helper'),
