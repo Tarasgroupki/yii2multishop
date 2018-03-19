@@ -38,6 +38,8 @@ class m141123_221351_shop extends Migration
         $this->createTable('{{%image}}', [
             'id' => Schema::TYPE_PK,
             'product_id' => Schema::TYPE_INTEGER,
+			'prod_id' => Schema::TYPE_INTEGER,
+			'image_url' => Schema::TYPE_STRING,
         ], $tableOptions);
 
         $this->addForeignKey('fk-image-product_id-product_id', '{{%image}}', 'product_id', 'product', 'id', 'SET NULL');
